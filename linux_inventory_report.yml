@@ -1,0 +1,6 @@
+---
+- name: Inventory Report 
+  hosts: localhost
+#  become: True
+  roles:
+    - role: linux_inventory_report 
