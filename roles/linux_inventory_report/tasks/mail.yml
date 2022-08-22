@@ -1,0 +1,16 @@
+
+- name: Sending an e-mail for Linux Server Found Available Update
+  mail:
+    host: smtp.dfs.com
+    port: 25
+    username: # If SMTP requires username
+    password: # If SMTP requires username
+    to: dennis.talosig@dfs.com 
+    subject: "Ansible Inventory Report - {{ ansible_fqdn }} Found Available Update"
+    body: "Found {{ number_updates }} available updates for system {{ ansible_fqdn }}. Refer to attachment for inventory report"
+    attach:
+      - "/var/inventory_reports/{{ ansible_fqdn }}-{{ ansible_date_time.iso8601_basic }}.html"
+  delegate_to: localhost
+  when: 
+    - number_updates != '0'
+    - ansible_os_family == 'RedHat'

@@ -1,0 +1,4 @@
+- name: Copy Inventory Report Template To Managed Node
+  template:
+    src: report.html.j2
+    dest: "/tmp/{{ ansible_fqdn }}-{{ ansible_date_time.iso8601_basic }}.html"

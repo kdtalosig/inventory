@@ -1,0 +1,20 @@
+- name: Listing Linux Inventory Reports
+  find:
+    paths: /tmp
+    patterns: "{{ ansible_fqdn }}-{{ ansible_date_time.iso8601_basic }}*"
+  register: output_linux
+  when: ansible_os_family == 'RedHat'
+
+- name: Filter Output
+  set_fact:
+    filter: "{{ output_linux.files | map(attribute='path')| list }}"
+  when: ansible_os_family == 'RedHat'
+
+- name: Fetching Linux Inventory Reports Back to Ansible Tower
+  fetch:
+    src: "{{ item }}"
+    dest: /var/inventory_reports/
+    flat: yes
+  with_items:
+    - "{{ filter }}"
+  when: ansible_os_family == 'RedHat'

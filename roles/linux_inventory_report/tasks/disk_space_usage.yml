@@ -1,0 +1,24 @@
+- name: Retrieve FileSystem
+  shell: df -h | awk 'FNR>1{print $1}'
+  register: fs_output
+  
+
+- name: Retrieve FileSystem Size
+  shell: df -h | awk 'FNR>1{print $2}'
+  register: size
+  
+- name: Retrieve FileSystem Used Size
+  shell: df -h | awk 'FNR>1{print $3}'
+  register: used
+  
+- name: Retrieve FileSystem Avail Size
+  shell: df -h | awk 'FNR>1{print $4}'
+  register: avail
+  
+- name: Retrieve FileSystem Used Size in %
+  shell: df -h | awk 'FNR>1{print $5}'
+  register: pct
+  
+- name: Retrieve Mount Point
+  shell: df -h | awk 'FNR>1{print $6}'
+  register: mount_output

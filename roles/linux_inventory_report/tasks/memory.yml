@@ -1,0 +1,9 @@
+---
+- name: memory total convert
+  shell: echo $(( $(cat /proc/meminfo | grep MemTotal | awk '{ print $2 }') / 1024 ))
+  register: memtotal
+
+- name: memory free convert
+  shell: echo $(( $(cat /proc/meminfo | grep -i memfree | awk '{ print $2 }') / 1024 ))
+  register: memfree
+

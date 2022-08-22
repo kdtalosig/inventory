@@ -1,0 +1,6 @@
+---
+- name: Retrive CPU Model Name 
+  shell: lscpu | sed -nr '/Model name/ s/.*:\s*(.*) /\1/p' 
+  register: cpu_name
+
+
