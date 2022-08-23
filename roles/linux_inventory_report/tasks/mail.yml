@@ -1,11 +1,11 @@
 
 - name: Sending an e-mail for Linux Server Found Available Update
   mail:
-    host: smtp.dfs.com
+    host: smtp.com
     port: 25
     username: # If SMTP requires username
     password: # If SMTP requires username
-    to: dennis.talosig@dfs.com 
+    to: xxx.xxx.com 
     subject: "Ansible Inventory Report - {{ ansible_fqdn }} Found Available Update"
     body: "Found {{ number_updates }} available updates for system {{ ansible_fqdn }}. Refer to attachment for inventory report"
     attach:
